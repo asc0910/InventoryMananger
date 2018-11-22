@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="storemanagerModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="categories">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="inventories">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="image" Type="varchar" MaxLength="255" />
+          <Property Name="modelNumber" Type="varchar" MaxLength="255" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="width" Type="double" />
+          <Property Name="height" Type="double" />
+          <Property Name="depth" Type="double" />
+          <Property Name="description" Type="text" />
+          <Property Name="category" Type="int" />
+        </EntityType>
+        <EntityType Name="orderinventories">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order" Type="int" />
+          <Property Name="inventory" Type="int" />
+          <Property Name="qty" Type="int" />
+        </EntityType>
+        <EntityType Name="orders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="deliveryDate" Type="date" />
+          <Property Name="address" Type="varchar" MaxLength="255" />
+          <Property Name="stagerName" Type="varchar" MaxLength="255" />
+          <Property Name="stagerCell" Type="varchar" MaxLength="255" />
+          <Property Name="term" Type="varchar" MaxLength="4" />
+          <Property Name="agentName" Type="varchar" MaxLength="255" />
+          <Property Name="agentCell" Type="varchar" MaxLength="255" />
+          <Property Name="sellerName" Type="varchar" MaxLength="255" />
+          <Property Name="sellerCell" Type="varchar" MaxLength="255" />
+          <Property Name="payfee" Type="varchar" MaxLength="255" />
+          <Property Name="lockbox" Type="varchar" MaxLength="255" />
+          <Property Name="orderInvoice" Type="varchar" MaxLength="255" />
+          <Property Name="stageDate" Type="date" />
+          <Property Name="pickupDate" Type="date" />
+          <Property Name="subtotal" Type="double" />
+          <Property Name="tax" Type="double" />
+          <Property Name="fee" Type="double" />
+          <Property Name="orderProcessing" Type="double" />
+          <Property Name="delivery" Type="double" />
+          <Property Name="total" Type="double" />
+          <Property Name="orderType" Type="int" />
+          <Property Name="bidFlag" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="storemanagerModelStoreContainer">
+          <EntitySet Name="categories" EntityType="Self.categories" Schema="storemanager" store:Type="Tables" />
+          <EntitySet Name="inventories" EntityType="Self.inventories" Schema="storemanager" store:Type="Tables" />
+          <EntitySet Name="orderinventories" EntityType="Self.orderinventories" Schema="storemanager" store:Type="Tables" />
+          <EntitySet Name="orders" EntityType="Self.orders" Schema="storemanager" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="storemanagerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="inventory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="image" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="modelNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="price" Type="Decimal" />
+          <Property Name="width" Type="Double" />
+          <Property Name="height" Type="Double" />
+          <Property Name="depth" Type="Double" />
+          <Property Name="description" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="category" Type="Int32" />
+        </EntityType>
+        <EntityType Name="orderinventory">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order" Type="Int32" />
+          <Property Name="inventory" Type="Int32" />
+          <Property Name="qty" Type="Int32" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="deliveryDate" Type="DateTime" />
+          <Property Name="address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="stagerName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="stagerCell" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="term" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="agentName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="agentCell" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="sellerName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="sellerCell" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="payfee" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="lockbox" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="orderInvoice" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="stageDate" Type="DateTime" />
+          <Property Name="pickupDate" Type="DateTime" />
+          <Property Name="subtotal" Type="Double" />
+          <Property Name="tax" Type="Double" />
+          <Property Name="fee" Type="Double" />
+          <Property Name="orderProcessing" Type="Double" />
+          <Property Name="delivery" Type="Double" />
+          <Property Name="total" Type="Double" />
+          <Property Name="orderType" Type="Int32" />
+          <Property Name="bidFlag" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="categories" EntityType="Self.category" />
+          <EntitySet Name="inventories" EntityType="Self.inventory" />
+          <EntitySet Name="orderinventories" EntityType="Self.orderinventory" />
+          <EntitySet Name="orders" EntityType="Self.order" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="storemanagerModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="categories">
+            <EntityTypeMapping TypeName="storemanagerModel.category">
+              <MappingFragment StoreEntitySet="categories">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inventories">
+            <EntityTypeMapping TypeName="storemanagerModel.inventory">
+              <MappingFragment StoreEntitySet="inventories">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="modelNumber" ColumnName="modelNumber" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="width" ColumnName="width" />
+                <ScalarProperty Name="height" ColumnName="height" />
+                <ScalarProperty Name="depth" ColumnName="depth" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="category" ColumnName="category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orderinventories">
+            <EntityTypeMapping TypeName="storemanagerModel.orderinventory">
+              <MappingFragment StoreEntitySet="orderinventories">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="inventory" ColumnName="inventory" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="storemanagerModel.order">
+              <MappingFragment StoreEntitySet="orders">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="deliveryDate" ColumnName="deliveryDate" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="stagerName" ColumnName="stagerName" />
+                <ScalarProperty Name="stagerCell" ColumnName="stagerCell" />
+                <ScalarProperty Name="term" ColumnName="term" />
+                <ScalarProperty Name="agentName" ColumnName="agentName" />
+                <ScalarProperty Name="agentCell" ColumnName="agentCell" />
+                <ScalarProperty Name="sellerName" ColumnName="sellerName" />
+                <ScalarProperty Name="sellerCell" ColumnName="sellerCell" />
+                <ScalarProperty Name="payfee" ColumnName="payfee" />
+                <ScalarProperty Name="lockbox" ColumnName="lockbox" />
+                <ScalarProperty Name="orderInvoice" ColumnName="orderInvoice" />
+                <ScalarProperty Name="stageDate" ColumnName="stageDate" />
+                <ScalarProperty Name="pickupDate" ColumnName="pickupDate" />
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+                <ScalarProperty Name="tax" ColumnName="tax" />
+                <ScalarProperty Name="fee" ColumnName="fee" />
+                <ScalarProperty Name="orderProcessing" ColumnName="orderProcessing" />
+                <ScalarProperty Name="delivery" ColumnName="delivery" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="orderType" ColumnName="orderType" />
+                <ScalarProperty Name="bidFlag" ColumnName="bidFlag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
